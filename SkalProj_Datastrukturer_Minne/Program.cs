@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Text;
 
 /*
  * Frågor:
@@ -93,7 +95,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             List<string> theList = new List<string>();
-            bool exit = false;
+
             do {
                 Console.WriteLine($"The list currently holds {theList.Count} elements with a capacity of {theList.Capacity}");
                 Console.WriteLine($"Prefix with '+' to add and with '-' to remove elements. {Environment.NewLine}Type 'r' to return");
@@ -121,7 +123,7 @@ namespace SkalProj_Datastrukturer_Minne
                 } catch (IndexOutOfRangeException) {
                     Console.WriteLine("Invalid input, try again");
                 }                
-            } while (!exit);
+            } while (true);
 
             /*
              * 1. Se ovan^.
@@ -152,6 +154,54 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+            Queue<string> theQueue = new Queue<string>();
+
+            do {
+                Console.WriteLine($"The queue currently holds: {{ {GetQueueString(theQueue)} }}");
+
+                Console.WriteLine($"Prefix with '+' to enqueue an element and with '-' to dequeue. {Environment.NewLine}Type 'r' to return");
+                string? input = Console.ReadLine();
+                // try catch in case the user inputs an empty string
+                try {
+                    char nav = input[0];
+                    string value = input.Substring(1);
+
+                    switch (nav) {
+                        case '+':
+                            theQueue.Enqueue(value);
+                            Console.WriteLine($"Added {value}");
+                            break;
+                        case '-':
+                            theQueue.Dequeue();
+                            Console.WriteLine($"Removed {value}");
+                            break;
+                        case 'r':
+                            return;
+                        default:
+                            Console.WriteLine("Invalid input, try again");
+                            break;
+                    }
+                } catch (IndexOutOfRangeException) {
+                    Console.WriteLine("Invalid input, try again");
+                }
+
+            } while (true);
+
+
+            // Se ReadME för Övning 2.1.
+        }
+
+        static string GetQueueString(Queue<string> theQueue)
+        {
+            StringBuilder builder = new();
+            foreach (string item in theQueue) {
+                builder.Append($"{item}, ");
+            }
+            string output = builder.ToString();
+            int startIndex = output.Length - 2;
+            if (startIndex > 0) output = output.Remove(startIndex);
+            return output;
         }
 
         /// <summary>
