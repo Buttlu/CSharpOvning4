@@ -287,8 +287,43 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
-        }
+            Stack<char> paranthesisStack = new();
 
+            Dictionary<char, char> pairParans = new() {
+                { ')', '(' },
+                { ']', '[' },
+                { '}', '{' }
+            };
+
+            Console.WriteLine("Enter string of paranthesis to validate: ");
+            string? input = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(input)) {
+                Console.WriteLine("Invalid input, cannot be empty");
+                return;
+            }
+
+            foreach (char c in input) {
+                // Save to the stack if it's an opening parantheses
+                if (pairParans.ContainsValue(c)) {
+                    paranthesisStack.Push(c);
+                } else if (pairParans.ContainsKey(c)) {
+                    // Since it's a closing paranthsis,
+                    // check if closes the paranthsis on the top of the stack
+                    if (!paranthesisStack.TryPop(out char open) || pairParans[c] != open) {
+                        Console.WriteLine("Invalid Parantheses");
+                        return;
+                    }
+                }
+            }
+
+            // If there any paranthsis left, if there are it means there are more opening than closing
+            if (paranthesisStack.Count == 0) {
+                Console.WriteLine("Valid Parantheses");
+            } else {
+                Console.WriteLine("Invalid Parantheses");
+            }
+        }
     }
 }
 
