@@ -75,19 +75,25 @@ namespace SkalProj_Datastrukturer_Minne
             List<string> theList = new List<string>();
             bool exit = false;
             do {
+                Console.WriteLine($"The list currently holds {theList.Count} elements with a capacity of {theList.Capacity}");
                 Console.WriteLine($"Prefix with '+' to add and with '-' to remove elements. {Environment.NewLine}Type 'r' to return");
                 string? input = Console.ReadLine();
+                // try catch in case the user inputs an empty string
                 try {
                     char nav = input[0];
                     string value = input.Substring(1);
                     
                     switch (nav) {
                         case '+':
+                            theList.Add(value);
+                            Console.WriteLine($"Added {value}");
                             break;
                         case '-':
+                            theList.Remove(value);
+                            Console.WriteLine($"Removed {value}");
                             break;
                         case 'r':
-                            break;
+                            return;
                         default:
                             Console.WriteLine("Invalid input, try again");
                             break;
