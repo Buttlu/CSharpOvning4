@@ -1,5 +1,25 @@
 ﻿using System;
 
+/*
+ * Frågor:
+ * 1. Stacken följer Last In First Out (LIFO) och lagrar lådor (metoder). 
+ *    De lådorna innehåller alla lokala variabler. 
+ *    Ifall en ny metod kallas så läggs den som en ny låda på stacken, 
+ *    och ifall en annan låda ska användas måste alla lådor över den tas bort först. 
+ *    När en låda tas bort så tas också alla lokala variabler bort från stacken.
+ *
+ *    Heapen innehåller referens objekt och har ingen speciell access-ordning. 
+ *    När en Reference Type skapas så läggs objektet på heapen medan en pointer till det objektet läggs på stacken. 
+ *    Objekt på heapen raderas inte direkt till skillnad från stacken, 
+ *    så då och då körs garbage collectorn som letar efter objekt på heapen 
+ *    som inte har en pointer till sig, och i så fall raderar det.
+ *
+ * 2. Value Types innehåller värden medan Reference Types innehåller referenser till värden. 
+ *
+ * 3. ReturnValue arbetar med ints vilket är Value Types, så vid "y = x" så får y värdet 3 eftersom x = 3. Så när y ändras så ändras inte x
+ *   ReturnValue2 arbetar med klasser vilket är Reference Types, så vid "y = x" så referar y till samma objekt som x, så när y ändrar värder till 4 så ändras det också på x.
+ */
+
 namespace SkalProj_Datastrukturer_Minne
 {
     class Program
@@ -105,12 +125,17 @@ namespace SkalProj_Datastrukturer_Minne
 
             /*
              * 1. Se ovan^.
+             * 
              * 2. Kapaciteten ökar när Add() gör att List.Count > List.Capacity. 
              * T.ex. Om det är en kapacitet på 4 och användaren försöker lägga till ett 5:e element så hoppar kapaciteten till 8.
+             * 
              * 3. Kapaciteten ökar (ungefär) med dubbla den förra ökningen: 0 -> 4 -> 8 -> 16 -> 32 -> 64 -> 128 -> 256.
+             * 
              * 4. Att ändra storleken är en ganska dyr operation så C# vill ändra storleken så sällan 
              *    som möjligt men samtidigt hålla arrayen så liten som möjligt.
+             * 
              * 5. Kapaciteten minskar aldrig.
+             * 
              * 6. När man vet exakt hur många element som listan ska innehålla. 
              *    "Hämta alla personer som är över 40" -> Vet ej storlek: lista
              *    "Hämta de 100 rikaste personerna" -> Vet storlek: array
