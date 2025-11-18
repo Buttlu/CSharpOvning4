@@ -100,10 +100,21 @@ namespace SkalProj_Datastrukturer_Minne
                     }
                 } catch (IndexOutOfRangeException) {
                     Console.WriteLine("Invalid input, try again");
-                }
-
-                
+                }                
             } while (!exit);
+
+            /*
+             * 1. Se ovan^.
+             * 2. Kapaciteten ökar när Add() gör att List.Count > List.Capacity. 
+             * T.ex. Om det är en kapacitet på 4 och användaren försöker lägga till ett 5:e element så hoppar kapaciteten till 8.
+             * 3. Kapaciteten ökar (ungefär) med dubbla den förra ökningen: 0 -> 4 -> 8 -> 16 -> 32 -> 64 -> 128 -> 256.
+             * 4. Att ändra storleken är en ganska dyr operation så C# vill ändra storleken så sällan 
+             *    som möjligt men samtidigt hålla arrayen så liten som möjligt.
+             * 5. Kapaciteten minskar aldrig.
+             * 6. När man vet exakt hur många element som listan ska innehålla. 
+             *    "Hämta alla personer som är över 40" -> Vet ej storlek: lista
+             *    "Hämta de 100 rikaste personerna" -> Vet storlek: array
+             * */
         }
 
         /// <summary>
