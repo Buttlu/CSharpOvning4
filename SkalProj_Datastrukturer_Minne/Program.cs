@@ -98,7 +98,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             do {
                 Console.WriteLine($"The list currently holds {theList.Count} elements with a capacity of {theList.Capacity}");
-                Console.WriteLine($"Prefix with '+' to add and with '-' to remove elements. {Environment.NewLine}Type 'r' to return");
+                Console.WriteLine($"Prefix with '+' to add and with '-' to remove elements");
+                Console.WriteLine("Type '0' to return");
                 string? input = Console.ReadLine();
                 // try catch in case the user inputs an empty string
                 try {
@@ -114,7 +115,7 @@ namespace SkalProj_Datastrukturer_Minne
                             theList.Remove(value);
                             Console.WriteLine($"Removed {value}");
                             break;
-                        case 'r':
+                        case '0':
                             return;
                         default:
                             Console.WriteLine("Invalid input, try again");
@@ -158,9 +159,10 @@ namespace SkalProj_Datastrukturer_Minne
             Queue<string> theQueue = new Queue<string>();
 
             do {
-                Console.WriteLine($"The queue currently holds: {{ {GetQueueString(theQueue)} }}");
+                Console.WriteLine($"The queue currently holds: {{ {GetIEnumerableString(theQueue)} }}");
 
-                Console.WriteLine($"Prefix with '+' to enqueue an element and with '-' to dequeue. {Environment.NewLine}Type 'r' to return");
+                Console.WriteLine($"Prefix with '+' to enqueue an element and with '-' to dequeue");
+                Console.WriteLine("Type '0' to return");
                 string? input = Console.ReadLine();
                 // try catch in case the user inputs an empty string
                 try {
@@ -173,10 +175,13 @@ namespace SkalProj_Datastrukturer_Minne
                             Console.WriteLine($"Added {value}");
                             break;
                         case '-':
-                            theQueue.Dequeue();
-                            Console.WriteLine($"Removed {value}");
+                            try {
+                                theQueue.Dequeue();
+                            } catch(InvalidOperationException) {
+                                Console.WriteLine("Queue is empty");
+                            }
                             break;
-                        case 'r':
+                        case '0':
                             return;
                         default:
                             Console.WriteLine("Invalid input, try again");
@@ -189,10 +194,11 @@ namespace SkalProj_Datastrukturer_Minne
             } while (true);
 
 
-            // Se ReadME för Övning 2.1.
+            // 1. Se Figur 1 i ReadME 
+            // 2. Se metod
         }
 
-        static string GetQueueString(Queue<string> theQueue)
+        static string GetIEnumerableString(IEnumerable<string> theQueue)
         {
             StringBuilder builder = new();
             foreach (string item in theQueue) {
@@ -214,6 +220,63 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+            Stack<string> theStack = new();
+
+            do {
+                Console.WriteLine($"The stack currently holds: {{ {GetIEnumerableString(theStack)} }}");
+                Console.WriteLine("Prefix with '+' to add an item and type '-' to pop the top item");
+                Console.WriteLine("Type 'r' to reverse a string");
+                Console.WriteLine("Type '0' to return");
+                string? input = Console.ReadLine();
+                char nav;
+                try {
+                    nav = input[0];
+                } catch (IndexOutOfRangeException) {
+                    Console.WriteLine("Invalid input, try again");
+                    continue;
+                }
+                string value = input.Substring(1);
+                switch (nav) {
+                    case '+':
+                        theStack.Push(value);
+                        break;
+                    case '-':
+                        try {
+                            theStack.Pop();
+                        }catch (InvalidOperationException) {
+                            Console.WriteLine("Nothing to pop");
+                        }
+                        break;
+                    case 'r':
+                        Console.Write("Type string to reverse:");
+                        string reversed = ReverseText(Console.ReadLine());
+                        Console.WriteLine($"Reversed text: {reversed}");
+                        break;
+                    case '0':
+                        return;
+                }
+
+            } while (true);
+
+            // 1. Se Figur 2 i ReadME
+            // 2. Se ReverseText()
+        }
+
+        static string ReverseText(string? text)
+        {
+            if (text is null)
+                return "";
+
+            Stack<char> chars = new();
+            foreach (char c in text) {
+                chars.Push(c);
+            }
+            StringBuilder builder = new();
+            foreach (char c in chars) {
+                builder.Append(c);
+            }
+            return builder.ToString();
         }
 
         static void CheckParanthesis()
