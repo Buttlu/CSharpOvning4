@@ -72,12 +72,32 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            List<string> theList = new List<string>();
+            bool exit = false;
+            do {
+                Console.WriteLine($"Prefix with '+' to add and with '-' to remove elements. {Environment.NewLine}Type 'r' to return");
+                string? input = Console.ReadLine();
+                try {
+                    char nav = input[0];
+                    string value = input.Substring(1);
+                    
+                    switch (nav) {
+                        case '+':
+                            break;
+                        case '-':
+                            break;
+                        case 'r':
+                            break;
+                        default:
+                            Console.WriteLine("Invalid input, try again");
+                            break;
+                    }
+                } catch (IndexOutOfRangeException) {
+                    Console.WriteLine("Invalid input, try again");
+                }
 
-            //switch(nav){...}
+                
+            } while (!exit);
         }
 
         /// <summary>
