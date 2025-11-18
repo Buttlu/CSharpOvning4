@@ -5,3 +5,6 @@ ReadME för att hålla svar / skissar på frågor
 <br><br>
 <img width="322" height="240" alt="bild" src="https://github.com/user-attachments/assets/12fe6164-16c1-462b-abd5-a65f72f9cf51" />
 <br>Figur 2: Simulering av en Stack.
+<br><br>
+<img width="258" height="1736" alt="bild" src="https://github.com/user-attachments/assets/4d88f545-9cc0-4214-bbd2-39492e7e96b5" />
+<br>Figur 3: Algoritm för att validera paranteser
