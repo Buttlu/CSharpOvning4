@@ -19,7 +19,78 @@ using System.Text;
  * 2. Value Types innehåller värden medan Reference Types innehåller referenser till värden. 
  *
  * 3. ReturnValue arbetar med ints vilket är Value Types, så vid "y = x" så får y värdet 3 eftersom x = 3. Så när y ändras så ändras inte x
- *   ReturnValue2 arbetar med klasser vilket är Reference Types, så vid "y = x" så referar y till samma objekt som x, så när y ändrar värder till 4 så ändras det också på x.
+ *   ReturnValue2 arbetar med klasser vilket är Reference Types, så vid "y = x" så referar y till samma objekt som x, 
+ *   så när y ändrar värder till 4 så ändras det också på x.
+ */
+
+/*
+ *    Övning 1
+ * 1. Se ExamineList().
+ * 
+ * 2. Kapaciteten ökar när Add() gör att List.Count > List.Capacity. 
+ * T.ex. Om det är en kapacitet på 4 och användaren försöker lägga till ett 5:e element så hoppar kapaciteten till 8.
+ * 
+ * 3. Kapaciteten ökar (ungefär) med dubbla den förra ökningen: 0 -> 4 -> 8 -> 16 -> 32 -> 64 -> 128 -> 256.
+ * 
+ * 4. Att ändra storleken är en ganska dyr operation så C# vill ändra storleken så sällan 
+ *    som möjligt men samtidigt hålla arrayen så liten som möjligt.
+ * 
+ * 5. Kapaciteten minskar aldrig.
+ * 
+ * 6. När man vet exakt hur många element som listan ska innehålla. 
+ *    "Hämta alla personer som är över 40" -> Vet ej storlek: lista
+ *    "Hämta de 100 rikaste personerna" -> Vet storlek: array
+ * */
+
+/*
+ *    Övning 2
+ * 1. Se Figur 1 i ReadME.
+ * 2. Se ExamineQueue().
+ */
+
+/*
+ *    Övning 3
+ * 1. Se Figur 2 i ReadME. 
+ *    Personen som ställer sig i kön först blir utcheckad sist,
+ *    och eftersom det ofta kommer nya personer i kön så kan det lätt hända att personen
+ *    som kom först blir utcheckad efter flera timmar om alls.
+ *    
+ *    2. Se ReverseText().
+ */
+
+/*
+ *    Övning 4
+ * 1. Se Figur 3 i ReadME.
+ * 
+ * 2. Se CheckParanthesis().
+ */
+
+/*
+ *    Övning 5
+ * 1. Se Figur 4 i ReadME.
+ * 
+ * 2. Se RecursiveEven().
+ * 
+ * 3. Se RecursiveFibonacci().
+ */
+
+/*
+ *    Övning 6
+ * 1. Se Figur 5 i ReadME.
+ * 
+ * 2. Se IterativeEven().
+ * 
+ * 3. Se IterativeFibonacci().
+ */
+
+/* 
+ * Frågan under Övning 6:
+ * Iteration är mycket bättre. 
+ * Under recursion så måste mycket beräknas flera gånger och metoder konstant läggs på stacken, 
+ * vilket kan ta upp välfigt mycket minne. 
+ * I en iterativ lösning så kan antingen en array eller 2 andra variabler användas för att lagra de tidigare 2 numrena.
+ * Det använder mycket mindre eftersom de enda som allokeras är antingen en array med storlek n eller 3 variabler.
+ * Det går tar dessutom mycket mindre tid eftersom samma beräkning inte behöver utföras flera gånger.
  */
 
 namespace SkalProj_Datastrukturer_Minne
@@ -133,25 +204,7 @@ namespace SkalProj_Datastrukturer_Minne
                 } catch (IndexOutOfRangeException) {
                     Console.WriteLine("Invalid input, try again");
                 }                
-            } while (true);
-
-            /*
-             * 1. Se ovan^.
-             * 
-             * 2. Kapaciteten ökar när Add() gör att List.Count > List.Capacity. 
-             * T.ex. Om det är en kapacitet på 4 och användaren försöker lägga till ett 5:e element så hoppar kapaciteten till 8.
-             * 
-             * 3. Kapaciteten ökar (ungefär) med dubbla den förra ökningen: 0 -> 4 -> 8 -> 16 -> 32 -> 64 -> 128 -> 256.
-             * 
-             * 4. Att ändra storleken är en ganska dyr operation så C# vill ändra storleken så sällan 
-             *    som möjligt men samtidigt hålla arrayen så liten som möjligt.
-             * 
-             * 5. Kapaciteten minskar aldrig.
-             * 
-             * 6. När man vet exakt hur många element som listan ska innehålla. 
-             *    "Hämta alla personer som är över 40" -> Vet ej storlek: lista
-             *    "Hämta de 100 rikaste personerna" -> Vet storlek: array
-             * */
+            } while (true);            
         }
 
         /// <summary>
@@ -200,11 +253,7 @@ namespace SkalProj_Datastrukturer_Minne
                     Console.WriteLine("Invalid input, try again");
                 }
 
-            } while (true);
-
-
-            // 1. Se Figur 1 i ReadME 
-            // 2. Se metod
+            } while (true);            
         }
 
         static string GetIEnumerableString(IEnumerable<string> theQueue)
@@ -266,13 +315,7 @@ namespace SkalProj_Datastrukturer_Minne
                         return;
                 }
 
-            } while (true);
-
-            // 1. Se Figur 2 i ReadME. Personen som ställer sig i kön först blir utcheckad sist,
-            //    och eftersom det ofta kommer nya personer i kön så kan det lätt hända att personen
-            //    som kom först blir utcheckad efter flera timmar om alls.
-            //
-            // 2. Se ReverseText()
+            } while (true);            
         }
 
         static string ReverseText(string? text)
@@ -462,16 +505,6 @@ namespace SkalProj_Datastrukturer_Minne
                 numbers[i] = numbers[i-1] + numbers[i-2];
             }
             return numbers[n-1];
-        }
-
-        /* 
-         * Frågan under Övning 6:
-         * Iteration är mycket bättre. 
-         * Under recursion så måste mycket beräknas flera gånger och metoder konstant läggs på stacken, 
-         * vilket kan ta upp välfigt mycket minne. 
-         * I en iterativ lösning så kan antingen en array eller 2 andra variabler användas för att lagra de tidigare 2 numrena.
-         * Det använder mycket mindre eftersom de enda som allokeras är antingen en array med storlek n eller 3 variabler.
-         * Det går tar dessutom mycket mindre tid eftersom samma beräkning inte behöver utföras flera gånger.
-         */
+        }        
     }
 }
