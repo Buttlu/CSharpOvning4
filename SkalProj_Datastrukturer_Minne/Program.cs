@@ -10,7 +10,8 @@ using System.Text;
  *    och ifall en annan låda ska användas måste alla lådor över den tas bort först. 
  *    När en låda tas bort så tas också alla lokala variabler bort från stacken.
  *
- *    Heapen innehåller referens objekt och har ingen speciell access-ordning. 
+ *    Heapen innehåller referens objekt och har ingen speciell access-ordning, 
+ *    det betyder att objekten på heapen kan kommas åt i vilken ordning som helst så länge man vet vad man vill komma åt.
  *    När en Reference Type skapas så läggs objektet på heapen medan en pointer till det objektet läggs på stacken. 
  *    Objekt på heapen raderas inte direkt till skillnad från stacken, 
  *    så då och då körs garbage collectorn som letar efter objekt på heapen 
@@ -19,8 +20,8 @@ using System.Text;
  * 2. Value Types innehåller värden medan Reference Types innehåller referenser till värden. 
  *
  * 3. ReturnValue arbetar med ints vilket är Value Types, så vid "y = x" så får y värdet 3 eftersom x = 3. Så när y ändras så ändras inte x
- *   ReturnValue2 arbetar med klasser vilket är Reference Types, så vid "y = x" så referar y till samma objekt som x, 
- *   så när y ändrar värder till 4 så ändras det också på x.
+ *    ReturnValue2 arbetar med klasser vilket är Reference Types, så vid "y = x" så referar y till samma objekt som x, 
+ *    så när y ändrar värder till 4 så ändras det också på x.
  */
 
 /*
@@ -60,7 +61,7 @@ using System.Text;
 
 /*
  *    Övning 4
- * 1. Se Figur 3 i ReadME.
+ * 1. Se Figur 3 i ReadME. Använder en stack.
  * 
  * 2. Se CheckParanthesis().
  */
