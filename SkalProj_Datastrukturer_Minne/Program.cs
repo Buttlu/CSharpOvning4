@@ -81,16 +81,6 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
-        private static void ExamineIteration()
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void ExamineRecursion()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Examines the datastructure List
         /// </summary>
@@ -338,6 +328,45 @@ namespace SkalProj_Datastrukturer_Minne
             } else {
                 Console.WriteLine("Invalid Parantheses");
             }
+        }
+
+        static string GetNumberFormat(int n) => (n % 10) switch {
+            1 => "st",
+            2 => "nd",
+            3 => "rd",
+            _ => "th"
+        };
+
+        private static void ExamineIteration()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ExamineRecursion()
+        {
+            do {
+                Console.Write("Write the n:th even number to get: ");
+                string? input = Console.ReadLine();
+                if (int.TryParse(input, out int n)) {
+                    int evenNumber = 0;
+                    try {
+                        evenNumber = RecursiveEven(n);
+                        Console.WriteLine($"The {n}{GetNumberFormat(n)} even number is {evenNumber}");
+                        return;
+                    } catch (StackOverflowException) {
+                        Console.WriteLine("Number was too big for this program, please try a smaller one");
+                    }
+                } else
+                    Console.WriteLine("Invalid input");
+
+            } while (true);
+        }
+
+        static int RecursiveEven(int n)
+        {
+            if (n == 1)
+                return 0;
+            return RecursiveEven(n - 1) + 2;
         }
     }
 }
