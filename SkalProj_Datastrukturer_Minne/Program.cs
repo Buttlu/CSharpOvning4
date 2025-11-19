@@ -35,7 +35,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 7, 0) of your choice"
+                Console.WriteLine(
+                    "\nPlease navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 7, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
@@ -343,25 +344,36 @@ namespace SkalProj_Datastrukturer_Minne
             _ => "th"
         };
 
-        private static void ExamineRecursion()
+        static void GetEvenNumber(Func<int, int> EvenMethod)
         {
+            if (EvenMethod is null) {
+                Console.WriteLine("No method provided, this cannot be used right now");
+                return;
+            }
+
             do {
+                // Gets and parses a number from the user
                 Console.Write("Write the n:th even number to get: ");
                 string? input = Console.ReadLine();
-                if (int.TryParse(input, out int n)) {
-                    int evenNumber = 0;
-                    try {
-                        evenNumber = RecursiveEven(n);
-                        Console.WriteLine($"The {n}{GetNumberFormat(n)} even number is {evenNumber}");
-                        return;
-                    } catch (StackOverflowException) {
-                        Console.WriteLine("Number was too big for this program, please try a smaller one");
-                    }
-                } else
+                if (!int.TryParse(input, out int n))
                     Console.WriteLine("Invalid input");
-
+                
+                // Try-catch in case the input is too high and causes a StackOverFlowException
+                try {
+                    int evenNumber = EvenMethod.Invoke(n);
+                    Console.WriteLine($"The {n}{GetNumberFormat(n)} even number is {evenNumber}");
+                    return;
+                } catch (StackOverflowException) {
+                    Console.WriteLine("Number was too big for this program, please try a smaller one");
+                }                 
             } while (true);
         }
+
+
+        private static void ExamineRecursion()
+        {
+            GetEvenNumber(RecursiveEven);
+        }   
 
         static int RecursiveEven(int n)
         {
@@ -372,7 +384,16 @@ namespace SkalProj_Datastrukturer_Minne
 
         private static void ExamineIteration()
         {
-            throw new NotImplementedException();
+            GetEvenNumber(IterativeEven);
+        }
+
+        static int IterativeEven(int n) 
+        {
+            int result = 0;
+            for (int i = 0; i < n - 1; i++) {
+                result += 2;
+            }
+            return result;
         }
 
         private static void ExamineFibonacci()
