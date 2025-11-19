@@ -35,11 +35,14 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 7, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
+                    + "\n5. Examine Recursion"
+                    + "\n6. Examine Iteration"
+                    + "\n7. Examine Fibonacci"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -70,7 +73,10 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     case '6':
                         ExamineIteration();
-                        break;                    
+                        break;
+                    case '7':
+                        ExamineFibonacci();
+                        break;
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -337,11 +343,6 @@ namespace SkalProj_Datastrukturer_Minne
             _ => "th"
         };
 
-        private static void ExamineIteration()
-        {
-            throw new NotImplementedException();
-        }
-
         private static void ExamineRecursion()
         {
             do {
@@ -367,6 +368,63 @@ namespace SkalProj_Datastrukturer_Minne
             if (n == 1)
                 return 0;
             return RecursiveEven(n - 1) + 2;
+        }
+
+        private static void ExamineIteration()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ExamineFibonacci()
+        {
+            do {
+                Console.Write($"Type the n:th fibonacci number prefixed with 'r+' for recursion and 'i+' for iteration: ");
+                string? number = Console.ReadLine();
+
+                // Validation and parsing
+                if (string.IsNullOrWhiteSpace(number)) {
+                    Console.WriteLine("Invalid input");
+                    continue;
+                }
+
+                if (!int.TryParse(number[2..], out int n)) {
+                    Console.WriteLine("Invalid input");
+                }
+
+                int fibonacciNumber = 0;
+                // Uses a try-catch in case the inputted number is too large
+                try {
+                    switch (number[..2]) {
+                        case "r+":
+                            fibonacciNumber = RecursiveFibonacci(n);
+                            break;
+                        case "i+":
+                            fibonacciNumber = IterativeFibonacci(n);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid input");
+                            continue;
+                    }
+                } catch (StackOverflowException) {
+                    Console.WriteLine("Number was too big for this program, please try a smaller one");
+                }
+                
+                Console.WriteLine($"The {n}{GetNumberFormat(n)} fibonacci number is {fibonacciNumber}");
+                return;
+
+            } while(true);
+        }        
+
+        static int RecursiveFibonacci(int n)
+        {
+            if (n == 2 || n == 1)
+                return 1;
+            return RecursiveFibonacci(n - 1) + RecursiveFibonacci(n - 2);
+        }
+
+        private static int IterativeFibonacci(int n)
+        {
+            throw new NotImplementedException();
         }
     }
 }
