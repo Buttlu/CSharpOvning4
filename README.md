@@ -8,3 +8,9 @@ ReadME för att hålla svar / skissar på frågor
 <br><br>
 <img width="258" height="1736" alt="bild" src="https://github.com/user-attachments/assets/4d88f545-9cc0-4214-bbd2-39492e7e96b5" />
 <br>Figur 3: Algoritm för att validera paranteser
+<br><br>
+<img width="609" height="330" alt="bild" src="https://github.com/user-attachments/assets/6031d46b-f716-459e-a2e2-2014f57743ef" />
+<br>Figur 4: Rekursiv funktion för att hämta de n:te udda talet
+<br><br>
+<img width="315" height="282" alt="bild" src="https://github.com/user-attachments/assets/8084073a-abba-43b9-bb56-c8eaf683785b" />
+<br>Figur 5: Iterativ funktion för att hämta de n:te udda talet
