@@ -65,10 +65,12 @@ namespace SkalProj_Datastrukturer_Minne
                     case '4':
                         CheckParanthesis();
                         break;
-                    /*
-                     * Extend the menu to include the recursive 
-                     * and iterative exercises.
-                     */
+                    case '5':
+                        ExamineRecursion();
+                        break;
+                    case '6':
+                        ExamineIteration();
+                        break;                    
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -77,6 +79,16 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
+        }
+
+        private static void ExamineIteration()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ExamineRecursion()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
