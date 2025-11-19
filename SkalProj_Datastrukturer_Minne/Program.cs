@@ -458,5 +458,15 @@ namespace SkalProj_Datastrukturer_Minne
             }
             return numbers[n-1];
         }
+
+        /* 
+         * Frågan under Övning 6:
+         * Iteration är mycket bättre. 
+         * Under recursion så måste mycket beräknas flera gånger och metoder konstant läggs på stacken, 
+         * vilket kan ta upp välfigt mycket minne. 
+         * I en iterativ lösning så kan antingen en array eller 2 andra variabler användas för att lagra de tidigare 2 numrena.
+         * Det använder mycket mindre eftersom de enda som allokeras är antingen en array med storlek n eller 3 variabler.
+         * Det går tar dessutom mycket mindre tid eftersom samma beräkning inte behöver utföras flera gånger.
+         */
     }
 }
