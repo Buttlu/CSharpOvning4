@@ -412,7 +412,7 @@ namespace SkalProj_Datastrukturer_Minne
                     Console.WriteLine("Invalid input");
                 }
 
-                float fibonacciNumber = 0;
+                double fibonacciNumber = 0;
                 // Uses a try-catch in case the inputted number is too large
                 try {
                     switch (number[..2]) {
@@ -436,21 +436,21 @@ namespace SkalProj_Datastrukturer_Minne
             } while(true);
         }        
         // Calculates the n:th fibonacci number: fib(n) = fib(n-1) + fib(n-2)
-        static float RecursiveFibonacci(int n)
+        static double RecursiveFibonacci(int n)
         {
             if (n == 2 || n == 1)
                 return 1;
             return RecursiveFibonacci(n - 1) + RecursiveFibonacci(n - 2);
         }
 
-        private static float IterativeFibonacci(int n)
+        private static double IterativeFibonacci(int n)
         {
             if (n == 1 || n == 2) {
                 return 1;
             }
 
             // Initializes the first 2 elements manually since they're needed in the calculation
-            float[] numbers = new float[n];
+            double[] numbers = new double[n];
             numbers[0] = 1;
             numbers[1] = 1;
             for (int i = 2; i < n; i++) {
