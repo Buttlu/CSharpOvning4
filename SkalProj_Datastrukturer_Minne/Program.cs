@@ -82,7 +82,7 @@ namespace SkalProj_Datastrukturer_Minne
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4, 5, 6, 7)");
                         break;
                 }
             }
@@ -280,10 +280,13 @@ namespace SkalProj_Datastrukturer_Minne
             if (text is null)
                 return "";
 
+            // Adds all the chars to a stack
             Stack<char> chars = new();
             foreach (char c in text) {
                 chars.Push(c);
             }
+
+            // Removes all the chars from the stack and adds them to a string
             StringBuilder builder = new();
             foreach (char c in chars) {
                 builder.Append(c);
@@ -344,6 +347,7 @@ namespace SkalProj_Datastrukturer_Minne
             _ => "th"
         };
 
+        // Methods for getting the n:th even number
         static void GetEvenNumber(Func<int, int> EvenMethod)
         {
             if (EvenMethod is null) {
@@ -369,7 +373,7 @@ namespace SkalProj_Datastrukturer_Minne
             } while (true);
         }
 
-
+        // Recursive implementation
         private static void ExamineRecursion()
         {
             GetEvenNumber(RecursiveEven);
@@ -382,6 +386,7 @@ namespace SkalProj_Datastrukturer_Minne
             return RecursiveEven(n - 1) + 2;
         }
 
+        // Iterative implementation
         private static void ExamineIteration()
         {
             GetEvenNumber(IterativeEven);
