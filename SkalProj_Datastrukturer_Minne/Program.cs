@@ -259,7 +259,10 @@ namespace SkalProj_Datastrukturer_Minne
 
             } while (true);
 
-            // 1. Se Figur 2 i ReadME
+            // 1. Se Figur 2 i ReadME. Personen som ställer sig i kön först blir utcheckad sist,
+            //    och eftersom det ofta kommer nya personer i kön så kan det lätt hända att personen
+            //    som kom först blir utcheckad efter flera timmar om alls.
+            //
             // 2. Se ReverseText()
         }
 
@@ -326,4 +329,3 @@ namespace SkalProj_Datastrukturer_Minne
         }
     }
 }
-
